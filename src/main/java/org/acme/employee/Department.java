@@ -1,13 +1,14 @@
 package org.acme.employee;
 
 import java.sql.Timestamp;
-import javax.persistence.Entity;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-@Entity(name = "department")
-public class DepartmentEntity extends PanacheEntity {
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.Data;
+
+@RegisterForReflection
+@Data
+public class Department {
     public Long id;
-
     public String code;
 
     public String name;
@@ -22,5 +23,4 @@ public class DepartmentEntity extends PanacheEntity {
     public String updatedBy;
     public Timestamp createdAt;
     public Timestamp updatedAt;
-
 }

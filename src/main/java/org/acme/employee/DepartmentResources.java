@@ -1,10 +1,10 @@
 package org.acme.employee;
+
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/departments")
-@Tag(name="Departments")
+@Tag(name = "Departments")
 public class DepartmentResources {
 
     @POST
@@ -25,6 +25,7 @@ public class DepartmentResources {
         departmentEntity.persist();
         return Response.status(Status.CREATED).build();
     }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllDepartments() {
@@ -47,6 +48,5 @@ public class DepartmentResources {
         DepartmentEntity.deleteById(id);
         return Response.noContent().build();
     }
-
 
 }
