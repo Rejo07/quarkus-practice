@@ -1,5 +1,6 @@
 package org.acme.employee;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,21 +15,23 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/departments")
-@Tag(name = "Departments")
+@Tag(name = "departments")
 public class DepartmentResources {
+    @Inject
+    DepartmentTransformer departmentTransformer;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response createDepartment(DepartmentEntity departmentEntity) {
+    public Response createDepartments(DepartmentEntity departmentEntity) {
         departmentEntity.persist();
         return Response.status(Status.CREATED).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listAllDepartments() {
+    public Response listAllDepartment() {
         return Response.ok(DepartmentEntity.listAll()).build();
     }
 
